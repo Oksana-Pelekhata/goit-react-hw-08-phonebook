@@ -1,9 +1,9 @@
 import React from 'react'
 
-const UserMenu = () => {
+const UserMenu = ({mail}) => {
   return (
   <div>
-  <p>mango@mail.com</p>
+  <p>{mail}</p>
   <button>Logout</button>
 </div>
   )
