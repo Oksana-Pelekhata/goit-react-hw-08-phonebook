@@ -1,4 +1,3 @@
-import { register } from 'api/users'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
@@ -25,7 +24,8 @@ const [password, setPassword] = useState('')
     console.log({ name, password, email })
      dispatch(registerThunk({ name, password, email })).unwrap()
             .then(() => { navigate('/') })
-        .catch(()=> {console.log("error login")})
+       .catch(() => { console.log("error login") })
+    e.target.form.reset();
     // register({
     //   name, email, password,
     // }).then(navigate('/login'))
