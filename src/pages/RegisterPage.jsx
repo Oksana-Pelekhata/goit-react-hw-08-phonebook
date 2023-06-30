@@ -25,7 +25,7 @@ const [password, setPassword] = useState('')
      dispatch(registerThunk({ name, password, email })).unwrap()
             .then(() => { navigate('/') })
        .catch(() => { console.log("error login") })
-    e.target.form.reset();
+    // e.target.form.reset();
     // register({
     //   name, email, password,
     // }).then(navigate('/login'))
