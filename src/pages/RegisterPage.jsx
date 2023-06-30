@@ -1,6 +1,8 @@
 import { register } from 'api/users'
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import { registerThunk } from 'redux/Auth/thunks'
 
 
 
@@ -8,6 +10,7 @@ const PegisterPage = () => {
 const [password, setPassword] = useState('')
 	const [email, setEmail] = useState('')
   const [name, setName] = useState('')
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   
   const handleChange = ({ target: { name, value } }) => {
@@ -19,10 +22,13 @@ const [password, setPassword] = useState('')
 	}
   const handleSubmit = (e) => {
     e.preventDefault()
-    // console.log({ name, password, email })
-    register({
-      name, email, password,
-    }).then(navigate('/login'))
+    console.log({ name, password, email })
+     dispatch(registerThunk({ name, password, email })).unwrap()
+            .then(() => { navigate('/') })
+        .catch(()=> {console.log("error login")})
+    // register({
+    //   name, email, password,
+    // }).then(navigate('/login'))
   }
   return (
    <div className='container p-4'>

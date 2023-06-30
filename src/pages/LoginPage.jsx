@@ -1,11 +1,9 @@
-import { login } from 'api/users'
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { loginThunk } from 'redux/Auth/thunks'
 
 const LoginPage = () => {
-    const isAuth = useSelector(state => state.auth.access_token)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const dispatch = useDispatch()
@@ -13,16 +11,14 @@ const LoginPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(loginThunk({email, password}))
+        dispatch(loginThunk({ email, password })).unwrap()
+            .then(() => { navigate('/') })
+        .catch(()=> {console.log("error login")})
     }
 
     const handleChange = ({ target: {name, value}}) => {
         name === "email" ? setEmail(value) : setPassword(value)
     }
-
-    useEffect(() => {
-        isAuth && navigate('/contacts')
-    }, [isAuth, navigate])
   return (
     <div >
           <h2>Log In</h2>

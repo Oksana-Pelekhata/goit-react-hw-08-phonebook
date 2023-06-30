@@ -1,15 +1,20 @@
 import styled from 'styled-components';
+import background from '../../images/background.jpeg'
 
 export const MainDiv = styled.section`
+outline: 4px solid red;
+margin: 0;
 width: 100%;
+height: 95vh;
 padding-left: 15px;
 padding-right: 15px;
-margin: 0 auto;
+
 text-align: center;
-background-image: url("../../images/background.jpeg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+
+background-image: url(${background});
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
 
        @media screen and (min-width: 480px) {
          max-width: 480px;
@@ -23,6 +28,14 @@ background-image: url("../../images/background.jpeg");
 `
 
 export const HeroTitle = styled.h1`
+mardin: 0;
 font-family: 'Roboto Mono';
 font-weight: 500;
+font-size: 44px;
+max-width: 680px;
+
+padding-top: 140px;
+// margin-top: 40px;
+margin-left: auto;
+margin-right: auto;
 `

@@ -2,9 +2,9 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../theme';
-import { ContactForm } from './ContactForm';
-import { ContactList } from './ContactList/';
-import { FilterForm } from './FilterForm';
+// import { ContactForm } from './ContactForm';
+// import { ContactList } from './ContactList/';
+// import { FilterForm } from './FilterForm';
 import { Route, Routes } from 'react-router-dom';
 import LoginPage from 'pages/LoginPage';
 import RegisterPage from 'pages/RegisterPage';

@@ -1,10 +1,10 @@
 import React from 'react'
-import {MainDiv} from './Home.styled'
+import {MainDiv, HeroTitle} from './Home.styled'
 
 const Home = () => {
   return (
       <MainDiv>
-          <h1> YOUR CONTACTS ARE ALWAYS CLOSE TO YOU</h1>
+          <HeroTitle> Your contacts are allways close to you</HeroTitle>
     </MainDiv>
   )
 }

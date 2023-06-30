@@ -1,8 +1,9 @@
 import React from 'react'
+import { Span } from './Logo.styled'
 
 const Logo = () => {
   return (
-    <div>Logo</div>
+    <Span>PhoneBook</Span>
   )
 }
 
