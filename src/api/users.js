@@ -4,27 +4,22 @@ const instance = axios.create({
     baseURL: 'https://connections-api.herokuapp.com'
 })
 
+
 // export const register = async (user) => {
 //     return await instance.post('/users/signup', user)
 // }
 
-const setToken = (token) => {
-    instance.defaults.headers.common['Authorization'] = token
+export const setToken = (token) => {
+    instance.defaults.headers.common['Authorization'] = `Bearer ${token}`
 }
 
-//   async (credentials, thunkAPI) => {
-//     try {
-//       const res = await axios.post('/users/signup', credentials);
-//       // After successful registration, add the token to the HTTP header
-//       setAuthHeader(res.data.token);
-//       return res.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
+export const dellToken = () => {
+	delete instance.defaults.headers.common['Authorization']
+}
+
 export const register = async (user) => {
     const {data} = await instance.post('/users/signup', user)
-    if('access_token' in data) setToken(`Bearer ${data.access_token}`)
+    if('access_token' in data) setToken(data.access_token)
     return data
 }
 export const login = async (user) => {
@@ -36,6 +31,10 @@ export const login = async (user) => {
 export const getProfile = async () => {
     const { data } = await instance.get('/users/current')
     return data
+}
+export const logout = async () => {
+    await instance.post('/users/logout')
+    dellToken()
 }
 
 // export const getContacts = async () => {

@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { registerThunk } from 'redux/Auth/thunks'
-
-
+import { toast } from 'react-hot-toast'
+import { Container, Stack } from '@mui/system'
+import {  Grid, TextField } from '@mui/material'
+import { Div, Button, DivCont } from './RegisterPage.styled'
 
 const PegisterPage = () => {
 const [password, setPassword] = useState('')
@@ -23,76 +25,84 @@ const [password, setPassword] = useState('')
     e.preventDefault()
     console.log({ name, password, email })
      dispatch(registerThunk({ name, password, email })).unwrap()
-            .then(() => { navigate('/') })
-       .catch(() => { console.log("error login") })
-    // e.target.form.reset();
-    // register({
-    //   name, email, password,
-    // }).then(navigate('/login'))
+		 .then(() => {
+			 navigate('/login')
+			 toast.success('Sign Up successfully!!')
+		 })
+		 .catch(() => {
+			 toast.error("Registration failed")
+			 console.log("error register")
+		 })
   }
+
   return (
-   <div className='container p-4'>
+	  <Container maxWidth="sm" >
+		  <DivCont>
+			  
+		  
 			<h2>Register</h2>
-			<form onSubmit={handleSubmit}>
-				<div className='mb-3'>
-					<label htmlFor='exampleInputName' className='form-label'>
-						Name:
-					</label>
-					<input
+		  <form onSubmit={handleSubmit}>
+			  <Grid 
+  container
+  direction="column"
+  justifyContent="center"
+				  alignItems="stretch"
+				  
+			  >
+				  <Stack spacing={2}>
+					  
+				 
+				<TextField id="outlined-basic" label="Name" variant="outlined" 
 						name='name'
 						type='text'
 						className='form-control'
-						id='exampleInputName'
 						aria-describedby='emailHelp'
 						onChange={handleChange}
-						value={name}
-					/>
-				</div>
-				<div className='mb-3'>
-					<label htmlFor='exampleInputEmail1' className='form-label'>
-						Email address
-					</label>
-					<input
+					  value={name} size="small"
+					 
+				  />	
+				<TextField id="outlined-basic" label="Email" variant="outlined"
 						name='email'
 						type='email'
 						className='form-control'
-						id='exampleInputEmail1'
-						aria-describedby='emailHelp'
+						
+						
 						onChange={handleChange}
-						value={email}
-					/>
-					<div id='emailHelp' className='form-text'>
-						We'll never share your email with anyone else.
-					</div>
-				</div>
-				<div className='mb-3'>
-					<label
-						htmlFor='exampleInputPassword1'
-						className='form-label'
-					>
-						Password
-					</label>
-					<input
+					  value={email}
+					  size='small'
+				  />  
+				  <TextField id="outlined-basic" label="Password" variant="outlined"
 						name='password'
 						type='password'
 						className='form-control'
-						id='exampleInputPassword1'
 						onChange={handleChange}
-						value={password}
-					/>
-				</div>
-				<button
-					type='submit'
-					className='btn btn-primary me-3'
-					disabled={!email || !password || !name}
+					  value={password}
+					  size='small'
+					  />
+					   </Stack>
+</Grid>
+				
+					<Div>
+						We'll never share your personal data with anyone else.
+					</Div>
+				
+			
+				<Button variant="contained" color='blue'
+					// type='submit'
+					// disabled={!email || !password || !name}
 				>
 					Register
-				</button>
+				</Button>
 				<Link to='/login'>Log In</Link>
-			</form>
-		</div>
+			  </form>
+			  </DivCont>
+		</Container>
     
   )
 }
 
 export default PegisterPage
+
+// email: "ok.soloviova@gmail.com"
+// name: "oksana"
+// password: "nach111"

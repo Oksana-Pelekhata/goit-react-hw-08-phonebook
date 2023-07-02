@@ -11,23 +11,32 @@ import RegisterPage from 'pages/RegisterPage';
 import ContactsPage from 'pages/ContactsPage';
 import HomePage from 'pages/HomePage';
 import Layout from './Layout/Layout';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import PublicRoute from './PublicRoute/PublicRoute';
 
 
 export const App = () => {
 
     return (
       <ThemeProvider theme={theme}>
-        {/* <ContactForm  />
-        <FilterForm
-          label="Find contacts by name"
-        />
-          <ContactList /> */}
+       
         <Routes>
           <Route path="/" element={<Layout />}>
            <Route index element={< HomePage/>} />   
-          <Route path='/register' element = {< RegisterPage/>} />
-          <Route path='/login' element={< LoginPage />} />
-          <Route path='/contacts' element={< ContactsPage />} /> 
+            <Route path='/register' element={
+              <PublicRoute>
+                < RegisterPage />
+                </PublicRoute>} />
+            <Route path='/login' element={
+              <PublicRoute>
+              < LoginPage />
+              </PublicRoute>
+             } />
+            <Route path='/contacts' element={
+              <PrivateRoute>
+ < ContactsPage />
+              </PrivateRoute>
+             } /> 
             </Route> 
         </Routes>
       </ThemeProvider>

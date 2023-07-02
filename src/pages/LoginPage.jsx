@@ -1,7 +1,11 @@
+import { Container, Stack } from '@mui/system'
 import React, { useState } from 'react'
+import { toast } from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { loginThunk } from 'redux/Auth/thunks'
+import { Grid, TextField } from '@mui/material'
+import { Div, Button, DivCont } from './RegisterPage.styled'
 
 const LoginPage = () => {
     const [email, setEmail] = useState('')
@@ -12,65 +16,62 @@ const LoginPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(loginThunk({ email, password })).unwrap()
-            .then(() => { navigate('/') })
-        .catch(()=> {console.log("error login")})
+			.then(() => {
+				toast.success('Welcome')
+				// navigate('/contacts')
+			})
+			.catch(() => {
+				console.log("error login")
+				toast.error('Error Login')
+			})
     }
 
     const handleChange = ({ target: {name, value}}) => {
         name === "email" ? setEmail(value) : setPassword(value)
     }
   return (
-    <div >
+	  <Container maxWidth="sm" >
+		  <DivCont>
           <h2>Log In</h2>
-          <p>Please, enter your details to get sing in to your account</p>
-			<form onSubmit={handleSubmit}>
-				<div>
-					<label htmlFor='exampleInputEmail1'>
-						Email
-					</label>
-					<input
+          <p>Please, enter your details to get signed in to your account</p>
+			  <form onSubmit={handleSubmit}>
+		<Grid 
+  container
+  direction="column"
+  justifyContent="center"
+				  alignItems="stretch"
+				  >
+					   <Stack spacing={2}>
+			<TextField id="outlined-basic" label="Email" variant="outlined"
 						name='email'
 						type='email'
-						id='exampleInputEmail1'
-						aria-describedby='emailHelp'
+						
 						onChange={handleChange}
                       value={email}
-                      placeholder='Enter Email'
 					/>
-					<div id='emailHelp' className='form-text'>
-						We'll never share your email with anyone else.
-					</div>
-				</div>
-				<div>
-					<label
-						htmlFor='exampleInputPassword1'
-					>
-						Password
-					</label>
-					<input
+					<TextField id="outlined-basic" label="Password" variant="outlined"
 						name='password'
 						type='password'
-						className='form-control'
-						id='exampleInputPassword1'
 						onChange={handleChange}
                       value={password}
-                      placeholder='password'
-					/>
-				</div>
-				<button
+						  /> 
+						 </Stack> 
+			  </Grid>
+				<Button style={{marginTop: '20px'}}
 					type='submit'
 					className='btn btn-primary me-3'
 					disabled={!email || !password}
 				>
 					Login
-              </button>
-              <p>
+              </Button>
+              <p style={{marginRight: '20px'}}>
                   Don't have an account?
-                  <Link to='/register'>Register now</Link>
+                  <Link style={{marginLeft: '10px'}} to='/register'>Register now</Link>
               </p>
 				
 			</form>
-		</div>
+		   </DivCont>
+		  </Container>
   )
 }
 

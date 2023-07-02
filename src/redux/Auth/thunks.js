@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import {login, register } from "api/users";
+import {getProfile, login, logout, register } from "api/users";
 
 // export const getProfileThunk = createAsyncThunk('auth/profile', () => getProfile())
 
@@ -15,12 +15,24 @@ export const registerThunk = createAsyncThunk(
 }
 )
 
-export const loginThunk = createAsyncThunk('auth/login', async (body, {rejectWithValue, dispatch }) => {
+export const loginThunk = createAsyncThunk('auth/login', async (body, {rejectWithValue }) => {
     try {
         const data = await login(body)
-        // dispatch(getProfileThunk())
         return data
     } catch (error) {
         return rejectWithValue(error.response.data.message)
     }
 })
+
+export const logoutThunk = createAsyncThunk('auth/logout', async (_, { rejectWithValue }) => {
+     try {
+        const data = await logout()
+        return data
+    } catch (error) {
+        return rejectWithValue(error.response.data.message)
+    }
+})
+
+export const getProfileThunk = createAsyncThunk('auth/profile', () =>
+	getProfile()
+)

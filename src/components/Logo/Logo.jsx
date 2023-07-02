@@ -1,9 +1,9 @@
 import React from 'react'
-import { Span } from './Logo.styled'
+import { LogoStyled, Span } from './Logo.styled'
 
 const Logo = () => {
   return (
-    <Span>PhoneBook</Span>
+    <LogoStyled  to='/'>Phone<Span>Book</Span></LogoStyled>
   )
 }
 

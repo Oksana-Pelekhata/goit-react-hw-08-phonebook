@@ -2,7 +2,6 @@ import React from 'react';
 import { Section, Title, Form, Label, Input, Button } from "./styled"
 import { useDispatch, useSelector } from 'react-redux';
 import { contactsSelector } from 'redux/selectors';
-import { nanoid } from 'nanoid';
 import { addContactThunk } from 'redux/contacts/thunks';
 
 
@@ -15,20 +14,19 @@ export const ContactForm = () => {
     e.preventDefault()
 
     const name = e.target.elements.name.value
-    const phone = e.target.elements.number.value
+    const number = e.target.elements.number.value
 
     const newContact = {
-      id: nanoid(),
       name,
-      phone
+      number
     }
     
         if (items.some((contact)=>(contact.name.toLowerCase() === name.toLowerCase()))) {
       return alert(`Contact with the nane ${name} already exists in your contact-list.`);
     }
 
-    if (items.some((contact)=>(contact.phone === phone))) {
-      return alert(`Contact with the number ${phone} already exists in your contact-list.`);
+    if (items.some((contact)=>(contact.number === number))) {
+      return alert(`Contact with the number ${number} already exists in your contact-list.`);
     }
     dispatch(addContactThunk(newContact))
     e.target.reset()
@@ -48,7 +46,7 @@ export const ContactForm = () => {
                         />
                     </Label>
                     
-                    <Label htmlFor="number">Phone
+                    <Label htmlFor="number">Number
             <Input
               type="tel"
               name="number"

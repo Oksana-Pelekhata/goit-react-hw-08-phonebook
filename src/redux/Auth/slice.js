@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginThunk, registerThunk } from "./thunks";
+import { getProfileThunk, loginThunk, logoutThunk, registerThunk } from "./thunks";
 
 const initialState = {
     access_token: '',
@@ -12,23 +12,31 @@ const initialState = {
 
 const handleFulfilledRegister = (state, { payload }) => {
     state.isLoggedIn = true;
-    state.access_token = payload.access_token;
+    state.access_token = payload.token;
     state.profile = payload.user;
     state.isLoading = false;
 }
 
 const handleFulfilledLogin = (state, {payload}) => {
     state.isLoading = false;
-    state.access_token = payload.access_token;
+    console.log('payload', payload)
+    state.access_token = payload.token;
     state.profile = payload.user;
     state.isLoggedIn = true;
 }
 
-// const handleFulfilledProfile = (state, { payload }) => {
-//     state.isLoading = false;
-//     state.profile = payload
-        
-// }
+const handleFulfilledProfile = (state, { payload }) => {
+    state.isLoading = false;
+    state.profile = payload
+    state.isLoggedIn = true;
+}
+
+const handleFulfilledLogout = (state) => {
+    state.isLoading = false;
+    state.profile = null;
+    state.isLoggedIn = false;
+    state.access_token = null;
+}
 
 const handlePending = (state) => {
     state.isLoading = true;
@@ -46,7 +54,8 @@ const authSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(registerThunk.fulfilled, handleFulfilledRegister )
             .addCase(loginThunk.fulfilled, handleFulfilledLogin)
-            // .addCase(getProfileThunk.fulfilled, handleFulfilledProfile)
+            .addCase(getProfileThunk.fulfilled, handleFulfilledProfile)
+            .addCase(logoutThunk.fulfilled, handleFulfilledLogout)
             .addMatcher(({ type }) => type.endsWith('/pending'), handlePending)
         .addMatcher(({type}) => type.endsWith('/rejected'), handleRejected)
     }

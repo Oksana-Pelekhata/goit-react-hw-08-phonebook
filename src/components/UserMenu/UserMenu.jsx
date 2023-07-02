@@ -1,11 +1,22 @@
+import { dellToken } from 'api/users'
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { logoutThunk } from 'redux/Auth/thunks'
+import { Div, Text } from './UserMenu.styled'
+import { Button } from 'pages/RegisterPage.styled'
 
-const UserMenu = ({mail}) => {
+const UserMenu = () => {
+  const mail = useSelector(state => state.auth.profile.email)
+  const dispatch = useDispatch()
+  const handleLogOut = () => {
+    dispatch(logoutThunk())
+		dellToken()
+  }
   return (
-  <div>
-  <p>{mail}</p>
-  <button>Logout</button>
-</div>
+  <Div>
+  <Text>{mail}</Text>
+  <Button type='submit' onClick={handleLogOut}>Logout</Button>
+</Div>
   )
 }
 
