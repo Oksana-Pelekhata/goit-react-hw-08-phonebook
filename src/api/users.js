@@ -18,13 +18,15 @@ export const dellToken = () => {
 }
 
 export const register = async (user) => {
-    const {data} = await instance.post('/users/signup', user)
-    if('access_token' in data) setToken(data.access_token)
+    const { data } = await instance.post('/users/signup', user)
+    
+    if('token' in data) setToken(data.token)
     return data
 }
 export const login = async (user) => {
     const { data } = await instance.post('/users/login', user)
-    if('access_token' in data) setToken(`Bearer ${data.access_token}`)
+    console.log('data', data)
+    if('token' in data) setToken(`Bearer ${data.token}`)
     return data
 }
 
@@ -51,3 +53,5 @@ export const logout = async () => {
 //     const { data } = await axios.delete(`https://648f851175a96b6644453225.mockapi.io/contacts/${id}`)
 //     return data
 // }
+
+///xcvbnm@mail.com

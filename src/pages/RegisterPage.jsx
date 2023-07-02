@@ -7,6 +7,7 @@ import { Container, Stack } from '@mui/system'
 import {  Grid, TextField } from '@mui/material'
 import { Div, Button, DivCont } from './RegisterPage.styled'
 
+
 const PegisterPage = () => {
 const [password, setPassword] = useState('')
 	const [email, setEmail] = useState('')
