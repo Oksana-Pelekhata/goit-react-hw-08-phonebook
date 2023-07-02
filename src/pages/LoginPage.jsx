@@ -2,16 +2,16 @@ import { Container, Stack } from '@mui/system'
 import React, { useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { loginThunk } from 'redux/Auth/thunks'
 import { Grid, TextField } from '@mui/material'
-import { Div, Button, DivCont } from './RegisterPage.styled'
+import {  Button, DivCont } from './RegisterPage.styled'
 
 const LoginPage = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const dispatch = useDispatch()
-    const navigate = useNavigate()
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
