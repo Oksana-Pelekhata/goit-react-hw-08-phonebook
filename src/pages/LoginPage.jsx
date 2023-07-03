@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { loginThunk } from 'redux/Auth/thunks'
 import { Grid, TextField } from '@mui/material'
 import {  Button, DivCont } from './RegisterPage.styled'
+import { logIn } from 'redux/Auth/operations'
 
 const LoginPage = () => {
     const [email, setEmail] = useState('')
@@ -15,15 +16,17 @@ const LoginPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(loginThunk({ email, password })).unwrap()
-			.then(() => {
-				toast.success('Welcome')
-				// navigate('/contacts')
-			})
-			.catch(() => {
-				console.log("error login")
-				toast.error('Error Login')
-			})
+		dispatch(logIn({ email, password }))
+			// .unwrap()
+			// .then(() => {
+			// 	toast.success('Welcome')
+			// 	// navigate('/contacts')
+			// })
+			// .catch(() => {
+			// 	console.log("error login")
+			// 	toast.error('Error Login')
+			// })
+		e.currentTarget.reset()
     }
 
     const handleChange = ({ target: {name, value}}) => {

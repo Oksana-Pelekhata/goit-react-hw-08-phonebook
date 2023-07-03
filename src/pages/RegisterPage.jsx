@@ -1,40 +1,43 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
-import { registerThunk } from 'redux/Auth/thunks'
-import { toast } from 'react-hot-toast'
+import { Link } from 'react-router-dom'
+// import { registerThunk } from 'redux/Auth/thunks'
+// import { toast } from 'react-hot-toast'
 import { Container, Stack } from '@mui/system'
 import {  Grid, TextField } from '@mui/material'
 import { Div, Button, DivCont } from './RegisterPage.styled'
+import { register } from 'redux/Auth/operations'
 
 
 const PegisterPage = () => {
-const [password, setPassword] = useState('')
-	const [email, setEmail] = useState('')
-  const [name, setName] = useState('')
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+// const [password, setPassword] = useState('')
+// 	const [email, setEmail] = useState('')
+//   const [name, setName] = useState('')
+//   const dispatch = useDispatch()
+// //   const navigate = useNavigate()
   
-  const handleChange = ({ target: { name, value } }) => {
-		name === 'email'
-			? setEmail(value)
-			: name === 'password'
-			? setPassword(value)
-			: setName(value)
-	}
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log({ name, password, email })
-     dispatch(registerThunk({ name, password, email })).unwrap()
-		 .then(() => {
-			 navigate('/login')
-			 toast.success('Sign Up successfully!!')
-		 })
-		 .catch(() => {
-			 toast.error("Registration failed")
-			 console.log("error register")
-		 })
-  }
+//   const handleChange = ({ target: { name, value } }) => {
+// 		name === 'email'
+// 			? setEmail(value)
+// 			: name === 'password'
+// 			? setPassword(value)
+// 			: setName(value)
+// 	}
+//   const handleSubmit = (e) => {
+//     e.preventDefault()
+//     console.log({ name, password, email })
+// 	  dispatch(register({ name, password, email }))
+// 		//   .unwrap()
+// 		//  .then(() => {
+// 		// 	 navigate('/login')
+// 		// 	 toast.success('Sign Up successfully!!')
+// 		//  })
+// 		//  .catch(() => {
+// 		// 	 toast.error("Registration failed")
+// 		// 	 console.log("error register")
+// 		//  })
+// 	  e.currentTarget.reset();
+//   }
 
   return (
 	  <Container maxWidth="sm" >
@@ -42,7 +45,9 @@ const [password, setPassword] = useState('')
 			  
 		  
 			<h2>Register</h2>
-		  <form onSubmit={handleSubmit}>
+			  <form
+				//   onSubmit={handleSubmit}
+			  >
 			  <Grid 
   container
   direction="column"
@@ -58,26 +63,27 @@ const [password, setPassword] = useState('')
 						type='text'
 						className='form-control'
 						aria-describedby='emailHelp'
-						onChange={handleChange}
-					  value={name} size="small"
+						// onChange={handleChange}
+						// 	  value={name}
+							  size="small"
 					 
 				  />	
 				<TextField id="outlined-basic" label="Email" variant="outlined"
 						name='email'
 						type='email'
-						className='form-control'
 						
 						
-						onChange={handleChange}
-					  value={email}
+						
+					// 	onChange={handleChange}
+					//   value={email}
 					  size='small'
 				  />  
 				  <TextField id="outlined-basic" label="Password" variant="outlined"
 						name='password'
 						type='password'
 						className='form-control'
-						onChange={handleChange}
-					  value={password}
+					// 	onChange={handleChange}
+					//   value={password}
 					  size='small'
 					  />
 					   </Stack>
