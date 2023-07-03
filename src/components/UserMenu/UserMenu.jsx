@@ -1,6 +1,6 @@
-import { dellToken } from 'api/users'
+// import { dellToken } from 'api/users'
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, } from 'react-redux'
 // import { logoutThunk } from 'redux/Auth/thunks'
 import { Div, Text } from './UserMenu.styled'
 import { Button } from 'pages/RegisterPage.styled'
