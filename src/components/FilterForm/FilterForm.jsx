@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Section, StyledForm, Label, Input, Title, SectionTitle } from './styled';
+import { Section, StyledForm, Title, SectionTitle } from './styled';
 import { useDispatch } from 'react-redux';
 import { setFilter } from 'redux/filterSlice';
 import { TextField } from '@mui/material';

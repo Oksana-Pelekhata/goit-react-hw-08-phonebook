@@ -1,9 +1,8 @@
-import {Section, ContactItem, ContactButton, ContactName } from './styled'
+import {Section, ContactItem, ContactName } from './styled'
 import { useDispatch, useSelector } from 'react-redux';
 import { contactsSelector, filterSelector } from 'redux/selectors';
 import { useEffect } from 'react';
 import { deleteContactThunk, getContactsThunk } from 'redux/contacts/thunks';
-import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import IconButton from '@mui/material/IconButton';
