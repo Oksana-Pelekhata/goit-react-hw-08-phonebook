@@ -23,9 +23,9 @@ background-position: center;
 //      @media screen and (min-width: 768px) {
 //          max-width: 768px;
 //     }
-//     @media screen and (min-width: 1200px) {
-//         max-width: 1200px;
-//  }
+    @media screen and (min-width: 1200px) {
+        max-width: 1200px;
+ }
 `
 
 export const HeroTitle = styled.h1`
