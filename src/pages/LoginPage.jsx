@@ -41,21 +41,22 @@ const LoginPage = () => {
   justifyContent="center"
 				  alignItems="stretch"
 				  >
-					   <Stack spacing={2}>
-			<TextField id="outlined-basic" label="Email" variant="outlined"
+			<Stack spacing={2}>
+			<TextField label="Email" variant="outlined"
 						name='email'
 						type='email'
-						
+						size="small"
 						onChange={handleChange}
                       value={email}
 					/>
-					<TextField id="outlined-basic" label="Password" variant="outlined"
+					<TextField label="Password" variant="outlined"
 						name='password'
 						type='password'
 						onChange={handleChange}
-                      value={password}
+							  value={password}
+							  size="small"
 						  /> 
-						 </Stack> 
+				</Stack> 
 			  </Grid>
 				<Button style={{marginTop: '20px'}}
 					type='submit'
@@ -68,7 +69,6 @@ const LoginPage = () => {
                   Don't have an account?
                   <Link style={{marginLeft: '10px'}} to='/register'>Register now</Link>
               </p>
-				
 			</form>
 		   </DivCont>
 		  </Container>

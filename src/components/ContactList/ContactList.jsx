@@ -3,6 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { contactsSelector, filterSelector } from 'redux/selectors';
 import { useEffect } from 'react';
 import { deleteContactThunk, getContactsThunk } from 'redux/contacts/thunks';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { createTheme, ThemeProvider } from '@mui/material/styles'
+import IconButton from '@mui/material/IconButton';
 
 
 export const ContactList = () => {
@@ -25,6 +29,15 @@ export const ContactList = () => {
   const handleDelete = (id) => {
     dispatch(deleteContactThunk(id))
   }
+
+  const theme = createTheme({
+  palette: {
+    neutral: {
+      main: '#33439dcf',
+  contrastText: '#fff'
+    },
+  },
+});
   return (
     <Section>
       {error && <h2>{error}</h2>}
@@ -33,15 +46,31 @@ export const ContactList = () => {
           <p>You don't have contacts yet</p>
         ) :
           (<ul> {
-            getFilteredContacts.map(({ id, name, phone }) => {
+            getFilteredContacts.map(({ id, name, number }) => {
               return (
                 <ContactItem key={id}>
                   <ContactName>
-                    {name}: {phone}
+                    {name}: {number}
                   </ContactName>
-                  <ContactButton type="button" onClick={() => handleDelete(id)}>
-                    Delete
-                  </ContactButton>
+                  <ThemeProvider theme={theme}>
+ {/* <Button type="button"
+                    variant="contained"
+                    startIcon={<DeleteIcon />}
+                    onClick={() => handleDelete(id)}
+                      color='neutral'
+                      size='small'
+                  >
+                  
+        
+        Delete
+                    </Button> */}
+                    <IconButton aria-label="delete"
+                      onClick={() => handleDelete(id)}
+                      color='neutral'
+                      size="large">
+  <DeleteIcon fontSize="inherit" />
+</IconButton>
+                  </ThemeProvider>
                 </ContactItem>
               );
             })

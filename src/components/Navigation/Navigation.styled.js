@@ -13,7 +13,7 @@ export const NavButton = styled(NavLink)`
     
 
     font-family: inherit;
-    font-weight: 700;
+    // font-weight: 700;
     font-size: 16px;
     
     letter-spacing: 0.06em;
@@ -25,8 +25,11 @@ background-color: #db0a0ab5;}
     
 `
 export const NavContainer = styled.nav`
+font-family:'roboto-mono';
 display: flex;
 flex-wrap: wrap;
-font-size: 26px;
+justify-content: center;
+align-items: center;
+// font-size: 26px;
 
 `

@@ -1,8 +1,10 @@
 import React from 'react';
-import { Section, Title, Form, Label, Input, Button } from "./styled"
+import { Section, Title, Form } from "./styled"
 import { useDispatch, useSelector } from 'react-redux';
 import { contactsSelector } from 'redux/selectors';
 import { addContactThunk } from 'redux/contacts/thunks';
+import { TextField } from '@mui/material';
+import { Button } from 'pages/RegisterPage.styled';
 
 
 export const ContactForm = () => {
@@ -34,27 +36,23 @@ export const ContactForm = () => {
 
     return (
         <Section>
-            <Title>Phonebook</Title>
+            <Title>Create new contact</Title>
                 <Form autoComplete="off" onSubmit={handleSubmit}>
-                <Label htmlFor="name">Name
-            <Input
-  type="text"
-  name="name"
-  // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-  title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-              required
-                        />
-                    </Label>
+               
+            <TextField id="outlined-basic" label="Name" variant="outlined"
+						name='name'
+						type='text'
+              size="small"
+             required/>
+                 
                     
-                    <Label htmlFor="number">Number
-            <Input
-              type="tel"
-              name="number"
-              // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-              required
-                        />
-                </Label>
+                   
+            <TextField id="outlined-basic" label="Number" variant="outlined"
+						name='number'
+						type='tel'
+              size="small"
+             required         />
+              
                     <Button type="submit">Add contact</Button>
                 </Form>
         </Section>

@@ -14,8 +14,8 @@ const UserMenu = () => {
   }
   return (
   <Div>
-  <Text>{mail}</Text>
-  <Button type='submit' onClick={handleLogOut}>Logout</Button>
+  <Text>{user.email}</Text>
+  <Button style={{marginBottom: 0}} type='submit' onClick={handleLogOut}>Logout</Button>
 </Div>
   )
 }

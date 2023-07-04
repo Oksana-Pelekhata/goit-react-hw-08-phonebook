@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
-import { Section, StyledForm, Label, Input, Title } from './styled';
+import { Section, StyledForm, Label, Input, Title, SectionTitle } from './styled';
 import { useDispatch } from 'react-redux';
 import { setFilter } from 'redux/filterSlice';
+import { TextField } from '@mui/material';
 
 export const FilterForm = ({ label }) => {
   const dispatch = useDispatch()
@@ -13,11 +14,11 @@ export const FilterForm = ({ label }) => {
     <Section>
       <Title>Contacts</Title>
       <StyledForm>
-        <Label htmlFor="filter">{label}</Label>
-        <Input
-          type="text"
-          id="filter"
-          name="filter"
+        <SectionTitle>Find contacts by name</SectionTitle>
+        <TextField id="filter" label='name' variant="outlined"
+						name='filter'
+						type='text'
+          size="small"
           onChange={handleChange}
         />
       </StyledForm>

@@ -1,6 +1,7 @@
+
 export const theme = {
     colors: {
-        primsry: "#fff",
+        primsry: "#33439dcf",
         secondary: "#000",
         buttonBackgroundColor: '#f0a10cc2',
     },
