@@ -10,10 +10,23 @@ import { useDispatch } from 'react-redux';
 import { useAuth } from 'hooks/useAuth';
 import { refreshUser } from 'redux/Auth/operations';
 
+const HomePage = lazy(() => import('../pages/HomePage'));
+const RegisterPage = lazy(() => import('../pages/RegisterPage'))
+const LoginPage = lazy(() => import('../pages/LoginPage'))
+const ContactsPage = lazy(()=> import('../pages/ContactsPage'))
+
 
 export const App = () => {
+const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
 
-    return (
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  return isRefreshing ? (
+    <b>Refreshing user...</b>
+  ) : (
       <ThemeProvider theme={theme}>
        
         <Routes>
