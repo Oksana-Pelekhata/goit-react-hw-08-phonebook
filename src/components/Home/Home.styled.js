@@ -2,12 +2,13 @@ import styled from 'styled-components';
 import background from '../../images/background.jpeg'
 
 export const MainDiv = styled.section`
-outline: 4px solid red;
+//outline: 4px solid red;
+border-top: 1px solid red;
 margin: 0;
 min-width: 100%;
 height: 95vh;
-padding-left: 15px;
-padding-right: 15px;
+// padding-left: 15px;
+// padding-right: 15px;
 
 text-align: center;
 
@@ -15,7 +16,8 @@ background-image: url(${background});
 background-repeat: no-repeat;
 background-size: cover;
 background-position: center;
- max-width: 1200px;
+
+//  max-width: 1200px;
 
 //        @media screen and (min-width: 480px) {
 //          max-width: 480px;
