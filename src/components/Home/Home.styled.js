@@ -4,7 +4,7 @@ import background from '../../images/background.jpeg'
 export const MainDiv = styled.section`
 outline: 4px solid red;
 margin: 0;
-width: 100%;
+min-width: 100%;
 height: 95vh;
 padding-left: 15px;
 padding-right: 15px;
